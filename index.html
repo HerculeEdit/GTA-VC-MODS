@@ -1,767 +1,242 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <link rel="icon" type="image/jpeg" href="favicon.jpg">
-  <title>GTA VC MODS</title>
-  <style>
-    :root {
-      --primary-color: #2ecc71;
-      --glass-bg: rgba(255, 255, 255, 0.06);
-      --glass-bg-strong: rgba(255, 255, 255, 0.11);
-      --glass-border: rgba(255, 255, 255, 0.16);
-      --glass-border-strong: rgba(255, 255, 255, 0.24);
-      --text-color: #ffffff;
-      --body-bg: #121212;
-      --btn-color: #2ecc71;
-      --btn-hover: #31e07a;
-      --modal-backdrop-filter: blur(22px);
-      --modal-content-bg: rgba(255, 255, 255, 0.06);
-      --modal-content-border: rgba(255, 255, 255, 0.14);
-      --modal-header-footer-bg: rgba(0, 0, 0, 0.24);
-      --modal-close-btn-hover: #e74c3c;
-      --download-message-bg: rgba(46, 204, 113, 0.82);
-      --download-message-color: #ffffff;
-      --shadow-lg: 0 18px 55px rgba(0, 0, 0, 0.38);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.22);
-      --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.08);
-    }
-
-    body.day-mode {
-      --primary-color: #2980b9;
-      --glass-bg: rgba(255, 255, 255, 0.62);
-      --glass-bg-strong: rgba(255, 255, 255, 0.78);
-      --glass-border: rgba(0, 0, 0, 0.1);
-      --glass-border-strong: rgba(0, 0, 0, 0.16);
-      --text-color: #2c3e50;
-      --body-bg: #e0e7ed;
-      --btn-color: #2980b9;
-      --btn-hover: #3498db;
-      --modal-backdrop-filter: blur(16px);
-      --modal-content-bg: rgba(255, 255, 255, 0.76);
-      --modal-content-border: rgba(0, 0, 0, 0.13);
-      --modal-header-footer-bg: rgba(255, 255, 255, 0.46);
-      --modal-close-btn-hover: #c0392b;
-      --download-message-bg: rgba(41, 128, 185, 0.82);
-      --download-message-color: #ffffff;
-      --shadow-lg: 0 18px 55px rgba(0, 0, 0, 0.18);
-      --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.12);
-      --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.35);
-    }
-    /* NEW: Modal entrance/exit animations */
-  @keyframes modalEnter {
-    from {
-      transform: scale(0.85) translateY(40px);
-      opacity: 0;
-    }
-    to {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes modalExit {
-    from {
-      transform: scale(1) translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: scale(0.85) translateY(40px);
-      opacity: 0;
-    }
-  }
-    /* --- New Video Card Styles --- */
-.video-card {
-    /* background: var(--card-bg); */
-    background: linear-gradient(180deg, var(--glass-bg-strong), var(--glass-bg));
-    border: 1px solid var(--glass-border);
-    border-radius: 18px;
-    padding: 15px;
-    margin-bottom: 15px; /* Adds space between the glassy divs */
-    transition: transform 0.3s ease, background 0.3s ease;
-    text-align: right;
-    display: block; /* Ensures it behaves like a container */
+<meta charset="UTF-8">
+<meta name="color-scheme" content="dark light">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" type="image/jpeg" href="favicon.jpg">
+<title>GTA VC MODS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#2ecc71; --primary-hover:#31e07a; --primary-rgb:46,204,113;
+  --text:#ffffff; --muted:rgba(255,255,255,.68); --body-bg:#121212;
+  --glass:rgba(255,255,255,.06); --glass-strong:rgba(255,255,255,.11);
+  --border:rgba(255,255,255,.16); --border-strong:rgba(255,255,255,.26);
+  --orb1:rgba(46,204,113,.28); --orb2:rgba(52,152,219,.22);
+  --shadow:0 18px 55px rgba(0,0,0,.4); --inset:inset 0 1px 0 rgba(255,255,255,.1);
+  --on-primary:#06210f;
 }
-
-.video-card:hover {
-    transform: translateY(-4px); /* Slight lift effect on hover */
-    background: rgba(255, 255, 255, 0.12); /* Slightly brighter on hover */
+@media (prefers-color-scheme: light){
+:root{
+  --primary:#2980b9; --primary-hover:#3498db; --primary-rgb:41,128,185;
+  --text:#2c3e50; --muted:rgba(44,62,80,.7); --body-bg:#e0e7ed;
+  --glass:rgba(255,255,255,.6); --glass-strong:rgba(255,255,255,.8);
+  --border:rgba(0,0,0,.1); --border-strong:rgba(255,255,255,.9);
+  --orb1:rgba(41,128,185,.28); --orb2:rgba(46,204,113,.2);
+  --shadow:0 18px 55px rgba(44,62,80,.18); --inset:inset 0 1px 0 rgba(255,255,255,.7);
+  --on-primary:#ffffff;
 }
-
-.video-card .video-link {
-    display: block;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.05rem;
-    margin-bottom: 8px;
 }
-
-.video-card p {
-    font-size: 0.85rem;
-    opacity: 0.7;
-    margin: 0;
+/* Optional offline copy: put Lalezar-Regular.ttf in a fonts/ folder */
+@font-face{font-family:"LalezarLocal";src:local("Lalezar"),url("fonts/Lalezar-Regular.ttf") format("truetype");font-display:swap}
+:root{
+  --font-fa:"Lalezar","LalezarLocal",Tahoma,sans-serif;
+  --font-en:"Poppins","Segoe UI",Arial,sans-serif;
 }
-
-
-  .modal {
-    animation: fadeInBackdrop 0.3s ease forwards;
-  }
-
-  .modal-content {
-    animation: modalEnter 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-  }
-
-  .modal.closing .modal-content {
-    animation: modalExit 0.3s ease forwards;
-  }
-
-  @keyframes fadeInBackdrop {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-
-  /* NEW: Better Rubika channel tag */
-  .rubika-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    background: linear-gradient(135deg, #ff6b6b, #ee5a5a);
-    color: white;
-    border-radius: 20px;
-    font-weight: bold;
-    font-size: 14px;
-    box-shadow: 0 4px 15px rgba(238, 90, 90, 0.4);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
-    text-decoration: none;
-  }
-
-  .rubika-tag:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(238, 90, 90, 0.5);
-  }
-
-  .rubika-tag svg {
-    width: 18px;
-    height: 18px;
-    fill: white;
-      }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      min-height: 100%;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      color: var(--text-color);
-      min-height: 100vh;
-      transition: background-color 0.35s ease, color 0.35s ease, filter 0.35s ease;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-      overflow-x: hidden;
-      position: relative;
-
-      background:
-        radial-gradient(circle at top left, rgba(255,255,255,0.10), transparent 28%),
-        radial-gradient(circle at bottom right, rgba(255,255,255,0.08), transparent 26%),
-        linear-gradient(135deg, var(--body-bg), var(--body-bg));
-      background-attachment: fixed;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background:
-        linear-gradient(120deg, rgba(255,255,255,0.08), transparent 30%),
-        linear-gradient(300deg, rgba(255,255,255,0.05), transparent 35%);
-      opacity: 0.55;
-      z-index: 0;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 940px;
-      padding: 30px;
-      margin: 20px auto;
-      position: relative;
-      z-index: 1;
-      text-align: center;
-
-      background: linear-gradient(180deg, var(--glass-bg-strong), var(--glass-bg));
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid var(--glass-border);
-      border-top: 1px solid var(--glass-border-strong);
-      border-left: 1px solid var(--glass-border-strong);
-      border-radius: 26px;
-      box-shadow: var(--shadow-lg), var(--shadow-inset);
-      overflow: hidden;
-    }
-
-    .container::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 35%);
-      pointer-events: none;
-    }
-
-    .top-bar {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 28px;
-      padding-bottom: 22px;
-      border-bottom: 1px solid var(--glass-border);
-      position: relative;
-      z-index: 1;
-    }
-
-    .top-bar h1 {
-      font-size: 30px;
-      letter-spacing: 0.5px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.24);
-    }
-
-    #theme-toggle {
-      padding: 12px 24px;
-      border-radius: 14px;
-      border: 1px solid var(--glass-border);
-      background: linear-gradient(180deg, var(--glass-bg-strong), var(--glass-bg));
-      color: var(--text-color);
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-      font-size: 15px;
-      min-height: 44px;
-      box-shadow: var(--shadow-md), var(--shadow-inset);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    #theme-toggle:hover {
-      transform: translateY(-2px);
-      background: var(--btn-color);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 12px 28px rgba(0,0,0,0.22);
-    }
-
-    .intro-text {
-      position: relative;
-      z-index: 1;
-      margin-bottom: 26px;
-      padding: 18px 18px 4px;
-    }
-
-    .intro-text h2 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
-
-    .intro-text p {
-      font-size: 16px;
-      line-height: 1.9;
-      opacity: 0.95;
-    }
-
-    .menu-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-top: 26px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .menu-buttons button {
-      padding: 15px 24px;
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      background: linear-gradient(180deg, var(--glass-bg-strong), var(--glass-bg));
-      color: var(--text-color);
-      cursor: pointer;
-      font-weight: bold;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-      font-size: 16px;
-      min-width: 170px;
-      box-shadow: var(--shadow-md), var(--shadow-inset);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .menu-buttons button:hover {
-      transform: translateY(-3px);
-      background: var(--btn-color);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 12px 28px rgba(0,0,0,0.22);
-    }
-
-    .menu-buttons button:active,
-    #theme-toggle:active,
-    .download-button:active,
-    .modal-footer button:active {
-      transform: translateY(0);
-    }
-
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      z-index: 20;
-      overflow: auto;
-      background-color: rgba(0, 0, 0, 0.54);
-      backdrop-filter: var(--modal-backdrop-filter);
-      -webkit-backdrop-filter: var(--modal-backdrop-filter);
-      justify-content: center;
-      align-items: center;
-      padding: 20px;
-    }
-
-    .modal-content {
-      width: 100%;
-      max-width: 620px;
-      margin: auto;
-      position: relative;
-      overflow: hidden;
-      border-radius: 24px;
-
-      background: linear-gradient(180deg, var(--modal-content-bg), rgba(255,255,255,0.03));
-      border: 1px solid var(--modal-content-border);
-      border-top: 1px solid var(--glass-border-strong);
-      border-left: 1px solid var(--glass-border-strong);
-      box-shadow: var(--shadow-lg), var(--shadow-inset);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      animation: slideInUp 0.38s ease forwards;
-    }
-
-    .modal-content::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 34%);
-      pointer-events: none;
-    }
-
-    .modal-header,
-    .modal-footer {
-      position: relative;
-      z-index: 1;
-      background: var(--modal-header-footer-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 16px 22px;
-      border-bottom: 1px solid var(--modal-content-border);
-    }
-
-    .modal-header h2 {
-      margin: 0;
-      font-size: 23px;
-    }
-
-    .close-button {
-      color: #aaa;
-      font-size: 32px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: color 0.25s ease, transform 0.25s ease;
-      line-height: 1;
-    }
-
-    .close-button:hover,
-    .close-button:focus {
-      color: var(--modal-close-btn-hover);
-      transform: scale(1.08);
-      text-decoration: none;
-    }
-
-    .modal-body {
-      position: relative;
-      z-index: 1;
-      text-align: right;
-      padding: 20px 22px 10px;
-    }
-
-    .modal-body p {
-      line-height: 1.9;
-      margin-bottom: 10px;
-    }
-
-    .modal-body ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .modal-body li {
-      margin-bottom: 10px;
-    }
-
-    .download-button {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 100%;
-      padding: 15px 22px;
-      border: 1px solid var(--glass-border);
-      border-radius: 16px;
-      background: linear-gradient(180deg, var(--glass-bg-strong), var(--glass-bg));
-      color: var(--text-color);
-      cursor: pointer;
-      font-weight: bold;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
-      font-size: 16px;
-      text-decoration: none;
-      box-shadow: var(--shadow-md), var(--shadow-inset);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    .download-button:hover {
-      transform: translateY(-3px);
-      background: var(--btn-color);
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.12), 0 12px 28px rgba(0,0,0,0.22);
-    }
-
-    .download-button span {
-      margin-right: 8px;
-      opacity: 0.92;
-      font-size: 0.95em;
-    }
-
-    .modal-footer {
-      position: relative;
-      z-index: 1;
-      padding: 16px 22px 20px;
-      text-align: center;
-      border-top: 1px solid var(--modal-content-border);
-    }
-
-    .modal-footer button {
-      padding: 10px 22px;
-      border: 1px solid var(--glass-border);
-      border-radius: 12px;
-      background: linear-gradient(180deg, var(--btn-color), var(--btn-hover));
-      color: #fff;
-      cursor: pointer;
-      transition: transform 0.25s ease, box-shadow 0.25s ease, filter 0.25s ease;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-    }
-
-    .modal-footer button:hover {
-      transform: translateY(-2px);
-      filter: brightness(1.02);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.24);
-    }
-
-    #download-message {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: var(--download-message-bg);
-      color: var(--download-message-color);
-      text-align: center;
-      padding: 15px;
-      font-size: 18px;
-      font-weight: bold;
-      z-index: 30;
-      opacity: 0;
-      transform: translateY(-100%);
-      transition: opacity 0.35s ease, transform 0.35s ease;
-      box-shadow: 0 10px 24px rgba(0,0,0,0.25);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-    }
-
-    #download-message.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes slideInUp {
-      from {
-        transform: translateY(30px) scale(0.98);
-        opacity: 0;
-      }
-      to {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-    }
-
-    @media (min-width: 700px) {
-      .top-bar {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 12px 18px;
-      }
-
-      .top-bar h1 {
-        font-size: 34px;
-      }
-
-      .container {
-        margin: 40px auto;
-        padding: 34px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      body {
-        padding: 14px;
-      }
-
-      .container {
-        padding: 20px;
-        border-radius: 22px;
-      }
-
-      .top-bar h1 {
-        font-size: 24px;
-      }
-
-      .intro-text h2 {
-        font-size: 19px;
-      }
-
-      .intro-text p {
-        font-size: 14px;
-      }
-
-      .menu-buttons button,
-      #theme-toggle {
-        font-size: 14px;
-        padding: 12px 18px;
-        min-width: 100%;
-      }
-
-      .menu-buttons {
-        gap: 12px;
-      }
-
-      .modal-content {
-        width: 95%;
-        border-radius: 20px;
-      }
-
-      .modal-header {
-        padding: 14px 16px;
-      }
-
-      .modal-header h2 {
-        font-size: 19px;
-      }
-
-      .modal-body {
-        padding: 16px 16px 8px;
-      }
-
-      .download-button {
-        font-size: 14px;
-        padding: 12px 16px;
-      }
-
-      .modal-footer {
-        padding: 14px 16px 18px;
-      }
-
-      #download-message {
-        font-size: 15px;
-        padding: 12px;
-      }
-    }
-  </style>
+html[lang="fa"] body{font-family:var(--font-fa)}
+html[lang="en"] body{font-family:var(--font-en)}
+
+/* Language button always uses the font that matches its text */
+html[lang="fa"] #langBtn{font-family:var(--font-en)}
+html[lang="en"] #langBtn{font-family:var(--font-fa)}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  color:var(--text);
+  background:var(--body-bg); min-height:100vh; line-height:1.7;
+  padding:24px 16px; display:flex; justify-content:center; align-items:flex-start;
+  overflow-x:hidden; position:relative; transition:background .35s,color .35s;
+}
+/* soft colored orbs behind the glass */
+body::before,body::after{
+  content:""; position:fixed; border-radius:50%; filter:blur(70px);
+  pointer-events:none; z-index:0; transition:background .35s;
+}
+body::before{width:420px;height:420px;top:-120px;left:-100px;background:var(--orb1);animation:drift 16s ease-in-out infinite alternate}
+body::after{width:480px;height:480px;bottom:-160px;right:-120px;background:var(--orb2);animation:drift 20s ease-in-out infinite alternate-reverse}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.12)}}
+
+.container{
+  position:relative; z-index:1; width:100%; max-width:960px; margin:16px auto;
+  padding:30px; border-radius:28px; overflow:hidden;
+  background:linear-gradient(180deg,var(--glass-strong),var(--glass));
+  border:1px solid var(--border); border-top-color:var(--border-strong); border-left-color:var(--border-strong);
+  -webkit-backdrop-filter:blur(20px); backdrop-filter:blur(20px);
+  box-shadow:var(--shadow),var(--inset);
+}
+.container::before{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(135deg,rgba(255,255,255,.12),transparent 35%)}
+.container>*{position:relative}
+
+.top-bar{
+  display:flex; justify-content:space-between; align-items:center; gap:14px; flex-wrap:wrap;
+  padding-bottom:20px; margin-bottom:26px; border-bottom:1px solid var(--border);
+}
+.top-bar h1{font-size:clamp(24px,5vw,34px);text-shadow:0 2px 10px rgba(0,0,0,.2)}
+.ctrl{display:flex;gap:10px}
+.pill{
+  min-height:42px; padding:9px 18px; border-radius:14px; cursor:pointer;
+  font:inherit; font-weight:700; color:var(--text);
+  background:linear-gradient(180deg,var(--glass-strong),var(--glass));
+  border:1px solid var(--border); box-shadow:var(--inset);
+  transition:transform .2s,background .2s,color .2s,box-shadow .2s;
+}
+.pill:hover{transform:translateY(-2px);background:var(--primary);color:var(--on-primary);box-shadow:0 10px 24px rgba(var(--primary-rgb),.35)}
+
+.intro{text-align:center;margin-bottom:30px}
+.intro h2{font-size:clamp(20px,4vw,26px);margin-bottom:8px}
+.intro p{color:var(--muted);max-width:56ch;margin:0 auto}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.card{
+  display:flex; flex-direction:column; gap:12px; padding:18px; border-radius:20px;
+  background:linear-gradient(180deg,var(--glass-strong),var(--glass));
+  border:1px solid var(--border); box-shadow:var(--inset);
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+}
+.card:hover{transform:translateY(-5px);border-color:rgba(var(--primary-rgb),.7);box-shadow:0 16px 36px rgba(var(--primary-rgb),.22),var(--inset)}
+.card h3{font-size:19px;line-height:1.3;font-weight:400}
+.ver{display:block;font-size:13px;color:var(--primary);font-weight:700}
+.card p{color:var(--muted);font-size:14.5px;flex:1}
+.dl{
+  display:flex; justify-content:center; align-items:center; gap:8px; padding:12px 16px;
+  border-radius:14px; text-decoration:none; font-weight:700; color:var(--text);
+  background:linear-gradient(180deg,var(--glass-strong),var(--glass)); border:1px solid var(--border);
+  transition:background .2s,color .2s,transform .2s,box-shadow .2s;
+}
+.card:hover .dl,.dl:hover{background:var(--primary);color:var(--on-primary);border-color:transparent}
+.dl:hover{box-shadow:0 10px 24px rgba(var(--primary-rgb),.35)}
+
+
+#toast{
+  position:fixed; top:0; left:0; width:100%; padding:14px; z-index:30; text-align:center;
+  font-weight:700; font-size:17px; color:#fff; background:rgba(var(--primary-rgb),.88);
+  -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px);
+  opacity:0; transform:translateY(-100%); transition:opacity .35s,transform .35s; box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
+#toast.show{opacity:1;transform:translateY(0)}
+
+a:focus-visible,button:focus-visible{outline:3px solid var(--primary-hover);outline-offset:3px}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  :root{--glass:rgba(40,40,40,.92);--glass-strong:rgba(55,55,55,.95)}
+  @media (prefers-color-scheme: light){:root{--glass:rgba(255,255,255,.95);--glass-strong:#fff}}
+}
+@media(max-width:520px){
+  .container{padding:20px;border-radius:22px}
+  .top-bar{justify-content:center;text-align:center}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
 </head>
 <body>
-
-  <div id="download-message">در حال دانلود...</div>
-
-  <div class="container">
-    <div class="top-bar">
-      <h1>GTA VC MODS</h1>
-      <button id="theme-toggle" onclick="toggleTheme()">🔆 / 🌙</button>
-    </div>
-
-    <div class="intro-text">
-      <h2>به GTA VC MODS خوش آمدید</h2>
-      <p>این سایت برای دسترسی به مادها و ابزارهای GTA VC طراحی شده است.</p>
-    </div>
-
-    <div class="menu-buttons">
-      <button onclick="openModal('toolsModal')">ابزارها</button>
-      <button onclick="openModal('videosModal')">ویدیوهای آموزشی</button>
-      <button onclick="openModal('carsModal')">مادهای ماشین</button>
+<div id="toast"></div>
+<div class="container">
+  <div class="top-bar">
+    <h1 data-i18n="title"></h1>
+    <div class="ctrl">
+      <button class="pill" id="langBtn" type="button">EN</button>
     </div>
   </div>
 
-  <div id="toolsModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>ابزارها</h2>
-        <span class="close-button" onclick="closeModal('toolsModal')">&times;</span>
-      </div>
-      <div class="modal-body">
-        <ul>
-          <li><a href="CollEditor_GTA-VC-MODS.rar" class="download-button" onclick="showDownloadMessage()">CollEditor <span>(v1.1 Beta)</span></a></li>
-          <li><a href="IMG Tool_GTA-VC-MODS.rar" class="download-button" onclick="showDownloadMessage()">IMG Tool <span>(v2.0)</span></a></li>
-          <li><a href="Magic.TXD_GTA-VC-MODS.rar" class="download-button" onclick="showDownloadMessage()">Magic TXD <span>(v4.5)</span></a></li>
-          <li><a href="TXD Workshop 4.0_GTA-VC-MODS.rar" class="download-button" onclick="showDownloadMessage()">TXD Workshop <span></span></a></li>
-          <li><a href="Vice City Mod Manager_GTA-VC-MODS.rar" class="download-button" onclick="showDownloadMessage()">Vice City Mod Manager <span>(v1.0)</span></a></li>
-          <li><a href="ZModeler 2.2.6_GTA-VC-MODS.rar" class="download-button" onclick="showDownloadMessage()">ZModeler <span>(v2.2.6)</span></a></li>
-        </ul>
-      </div>
-      <div class="modal-footer">
-        <button onclick="closeModal('toolsModal')">بستن</button>
-      </div>
-    </div>
+  <div class="intro">
+    <p data-i18n="lead"></p>
   </div>
-<div id="videosModal" class="modal">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h2>ویدیوهای آموزشی</h2>
-      <span class="close-button" onclick="closeModal('videosModal')">&times;</span>
-    </div>
-<!-- Replace the content inside <div class="modal-body"> of your videosModal with this: -->
-<div class="modal-body">
-    <div style="text-align: center;">
-        <p style="margin-bottom: 15px;">ویدیوهای آموزشی ما را در کانال روبیکا دنبال کنید:</p>
-        <a href="https://rubika.ir/GTA_VC_MODS" class="rubika-tag" target="_blank">
-            <!-- Your Rubika Icon/Text here -->
-         <svg viewBox="0 0 24 24">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-        </svg>
-            روبیکا
-        </a>
-    </div>
 
-    <h3 style="margin: 20px 0 15px 0;">آموزش‌ها</h3>
+  <div class="grid" id="tools"></div>
 
-    <!-- Video Card 1 -->
-    <div class="video-card">
-        <a href="https://rubika.ir/GTA_VC_MODS/BHICBHHFJJCJAGJF" class="video-link"><span style="margin-left:8px;">▶</span> آموزش ریختن مود دارای فایل .dff و .txd</a>
-        <p>برنامه‌های مورد نیاز: IMG Tool</p>
-    </div>
-
-    <!-- Video Card 2 -->
-    <div class="video-card">
-        <a href="https://rubika.ir/GTA_VC_MODS/BHIGJEFACCJCFGJF" class="video-link"><span style="margin-left:8px;">▶</span> آموزش ریختن مود دارای فایل .dff و .txd و .col</a>
-        <p>برنامه‌های مورد نیاز: IMG Tool, CollEditor</p>
-    </div>
-
-    <!-- Video Card 3 -->
-    <div class="video-card">
-        <a href="https://rubika.ir/GTA_VC_MODS/BHIHACBAGEIEFGJF" class="video-link"><span style="margin-left:8px;">▶</span> آموزش ساخت و ویرایش مود</a>
-        <p>برنامه‌های مورد نیاز: ZModeler, TXD Workshop, Magic.TXD</p>
-    </div>
-      <div class="video-card">
-        <a href="https://rubika.ir/GTA_VC_MODS/BHIGIFGJGHJGJGJF" class="video-link"><span style="margin-left:8px;">▶</span> آموزش نصب برنامه GGMM</a>
-        <p>برنامه‌های مورد نیاز: GGMM</p>
-      </div>
-    <!-- Add more cards following the same structure above -->
 </div>
 
-    <div class="modal-footer">
-      <button onclick="closeModal('videosModal')">بستن</button>
-    </div>
-  </div>
-</div>
+<script>
+var TOOLS = [
+  {file:"CollEditor_GTA-VC-MODS.rar", name:"CollEditor", ver:"v1.1 Beta",
+   fa:"ویرایش فایل‌های برخورد (.col) ماشین‌ها و ساختمان‌ها", en:"Edit collision (.col) files for vehicles and buildings"},
+  {file:"IMG Tool_GTA-VC-MODS.rar", name:"IMG Tool", ver:"v2.0",
+   fa:"باز کردن آرشیو IMG و جایگزینی فایل‌های .dff و .txd", en:"Open IMG archives and replace .dff and .txd files"},
+  {file:"Magic.TXD_GTA-VC-MODS.rar", name:"Magic TXD", ver:"v4.5",
+   fa:"ویرایش و تبدیل تکسچرها در فایل‌های TXD", en:"Edit and convert textures inside TXD files"},
+  {file:"TXD Workshop 4.0_GTA-VC-MODS.rar", name:"TXD Workshop", ver:"4.0",
+   fa:"مدیریت و ویرایش سریع تکسچرهای TXD", en:"Quickly manage and edit TXD textures"},
+  {file:"Vice City Mod Manager_GTA-VC-MODS.rar", name:"Vice City Mod Manager", ver:"v1.0",
+   fa:"نصب و مدیریت مادها بدون دست‌کاری فایل‌های بازی", en:"Install and manage mods without touching game files"},
+  {file:"ZModeler 2.2.6_GTA-VC-MODS.rar", name:"ZModeler", ver:"v2.2.6",
+   fa:"ساخت و ویرایش مدل‌های سه‌بعدی (.dff)", en:"Build and edit 3D models (.dff)"}
+];
 
-  <div id="carsModal" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>مادهای ماشین</h2>
-        <span class="close-button" onclick="closeModal('carsModal')">&times;</span>
-      </div>
-      <div class="modal-body">
-        <p>در حال حاضر، لیست مادهای ماشین در حال به‌روزرسانی است.</p>
-        <p>لطفاً بعداً دوباره بررسی کنید!</p>
-      </div>
-      <div class="modal-footer">
-        <button onclick="closeModal('carsModal')">بستن</button>
-      </div>
-    </div>
-  </div>
+var I18N = {
+  fa:{
+    title:"برنامه‌های کاربردی برای مادسازی GTA VC",
+    lead:"همه ابزارهایی که برای ساخت، ویرایش و نصب مد در GTA Vice City لازم دارید، یک‌جا و رایگان.",
+    download:"دانلود", toast:"در حال دانلود...",
+    other:"EN"
+  },
+  en:{
+    title:"Helpful apps for GTA VC modding",
+    lead:"Everything you need to create, edit and install mods for GTA Vice City, in one place and free to download.",
+    download:"Download", toast:"Downloading...",
+    other:"فارسی"
+  }
+};
 
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle('day-mode');
-      localStorage.setItem('theme', document.body.classList.contains('day-mode') ? 'day' : 'night');
-    }
+var lang = "fa", root = document.documentElement;
 
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      modal.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-    }
+function store(k,v){ try{ localStorage.setItem(k,v); }catch(e){} }
+function load(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
 
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      modal.style.display = 'none';
-      document.body.style.overflow = 'auto';
-    }
+function render(){
+  var t = I18N[lang];
+  root.lang = lang;
+  root.dir = lang === "fa" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    el.textContent = t[el.getAttribute("data-i18n")];
+  });
+  document.title = t.title;
+  document.getElementById("langBtn").textContent = t.other;
+  var grid = document.getElementById("tools");
+  grid.innerHTML = "";
+  TOOLS.forEach(function(x){
+    var card = document.createElement("div");
+    card.className = "card";
 
-    function showDownloadMessage() {
-      const message = document.getElementById('download-message');
-      message.classList.add('visible');
+    var title = document.createElement("h3");
+    title.textContent = x.name;
+    var ver = document.createElement("span");
+    ver.className = "ver";
+    ver.textContent = x.ver;
+    title.appendChild(ver);
 
-      setTimeout(() => {
-        message.classList.remove('visible');
-      }, 3000);
-    }
+    var p = document.createElement("p");
+    p.textContent = x[lang];
 
-    window.addEventListener('click', function (e) {
-      document.querySelectorAll('.modal').forEach(modal => {
-        if (modal.style.display === 'flex' && e.target === modal) {
-          closeModal(modal.id);
-        }
-      });
-    });
+    var a = document.createElement("a");
+    a.className = "dl";
+    a.href = x.file;
+    a.setAttribute("download", "");
+    a.textContent = t.download;
+    a.addEventListener("click", showToast);
 
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') {
-        document.querySelectorAll('.modal').forEach(modal => {
-          if (modal.style.display === 'flex') {
-            closeModal(modal.id);
-          }
-        });
-      }
-    });
+    card.appendChild(title); card.appendChild(p); card.appendChild(a);
+    grid.appendChild(card);
+  });
+}
 
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'day') {
-        document.body.classList.add('day-mode');
-      } else {
-        document.body.classList.remove('day-mode');
-      }
-    });
-  </script>
+function showToast(){
+  var el = document.getElementById("toast");
+  el.textContent = I18N[lang].toast;
+  el.classList.add("show");
+  setTimeout(function(){ el.classList.remove("show"); }, 3000);
+}
+
+document.getElementById("langBtn").addEventListener("click", function(){
+  lang = lang === "fa" ? "en" : "fa";
+  store("lang", lang);
+  render();
+});
+
+if(load("lang") === "en") lang = "en";
+render();
+</script>
 </body>
 </html>
